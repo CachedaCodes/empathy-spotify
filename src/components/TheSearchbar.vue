@@ -23,10 +23,7 @@ export default {
   },
    watch: {
     searchQuery: function (newQuery, oldQuery) {
-      if(newQuery)
         this.debouncedSearch();
-      else
-        this.$store.commit('CLEAR_ALBUMS'); 
     }
   },
   created: function () {
@@ -34,7 +31,10 @@ export default {
   },
   methods: {
     search: function() {
-      this.$store.dispatch('SEARCH_ALBUMS', this.searchQuery);
+      if(this.searchQuery)
+        this.$store.dispatch('SEARCH_ALBUMS', this.searchQuery);
+      else
+        this.$store.commit('CLEAR_ALBUMS'); 
     }
   }
 }

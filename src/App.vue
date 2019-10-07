@@ -6,17 +6,34 @@
       </header>
       <Searchbar/>
     </section>
+    <ul>
+      <li
+        is="album-item"
+        v-for="album in albums"
+        :key="album.id"
+        :title="album.name"
+      ></li>
+    </ul>
   </div>
 </template>
 
 <script>
 import Searchbar from './components/TheSearchbar.vue';
+import AlbumItem from './components/AlbumItem.vue';
+
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'app',
   components: {
-    Searchbar
+    Searchbar,
+    AlbumItem
   },
+  computed: {
+    ...mapGetters({
+      albums: 'GET_ALBUMS',
+    }),
+  }
 }
 </script>
 
