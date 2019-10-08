@@ -6,14 +6,14 @@
       </header>
       <Searchbar/>
     </section>
-    <ul>
-      <li
+    <section class="gallery">
+      <div
         is="album-item"
         v-for="album in albums"
         :key="album.id"
-        :title="album.name"
-      ></li>
-    </ul>
+        :album="album"
+      ></div>
+    </section>
   </div>
 </template>
 
@@ -75,5 +75,11 @@ export default {
     -webkit-text-rendering: optimizeLegibility;
     -moz-text-rendering: optimizeLegibility;
     text-rendering: optimizeLegibility;
+  }
+
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
   }
 </style>
