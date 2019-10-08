@@ -1,28 +1,79 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <section class="head-panel">
+      <header>
+        <h1>Spotify Search</h1>
+      </header>
+      <Searchbar/>
+    </section>
+    <ul>
+      <li
+        is="album-item"
+        v-for="album in albums"
+        :key="album.id"
+        :title="album.name"
+      ></li>
+    </ul>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Searchbar from './components/TheSearchbar.vue';
+import AlbumItem from './components/AlbumItem.vue';
+
+import { mapGetters } from 'vuex'
 
 export default {
-  name: "app",
+  name: 'app',
   components: {
-    HelloWorld
+    Searchbar,
+    AlbumItem
+  },
+  computed: {
+    ...mapGetters({
+      albums: 'GET_ALBUMS',
+    }),
   }
-};
+}
 </script>
 
 <style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  #app {
+    font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.4em;
+    background: #fff;
+    color: #4d4d4d;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .head-panel {
+    background: #f5f5f5;
+  
+    margin-bottom: 100px;  
+    border: 1px solid #f5f5f5;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
+                0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .head-panel h1 {
+    width: 100%;
+    font-size: 100px;
+    font-weight: 100;
+    text-align: center;
+    color: rgba(175, 47, 47, 0.15);
+    -webkit-text-rendering: optimizeLegibility;
+    -moz-text-rendering: optimizeLegibility;
+    text-rendering: optimizeLegibility;
+  }
 </style>
