@@ -1,35 +1,41 @@
 <template>
-  <article class="album-card">
-    <div class="card-cover">
-      <img :src="album.images[1].url">
-      <div class="play-wrapper">
-        <button
-          class="play-btn" 
-          type="button"
-          target="_blank"
-          @click="openInSpotify"
-        >
-          <font-awesome-icon icon="play" class="play-icon"/>
-        </button> 
+    <article 
+      class="album-card"
+    >
+    	<div class="card-cover">
+      	<img :src="album.images[1].url">
+      	<div class="play-wrapper">
+          <PlayButton 
+            :spotifyLink="this.album.external_urls.spotify"
+          />
+        </div>
       </div>
-    </div>
-    <div class="album-card-info">
-      <h1>{{ album.name }}</h1>
-      <p>Artist: {{ album.artists[0].name }}</p>
-      <p>Realease date: {{ album.release_date }}</p>
-      <p>Total tracks: {{ album.total_tracks }}</p>
-    </div>
-    
+      <div class="album-card-info">
+        <h1>{{ album.name }}</h1>
+        <p>Artist: {{ album.artists[0].name }}</p>
+        <p>Realease date: {{ album.release_date }}</p>
+        <p>Total tracks: {{ album.total_tracks }}</p>
+      </div>
+      
     </article>
 </template>
 
 <script>
+import PlayButton from './PlayButton.vue';
+
 export default {
   name: 'album-item',
+  components: {
+    PlayButton
+  },
+  data: function() {
+    return {entering: false}
+  },
   props: ['album'],
-  methods: {
-    openInSpotify: function() {
-      window.open(this.album.external_urls.spotify, "_blank")
+  methods:{
+    beforeEnter: function (el) {
+      console.log("before enter")
+      this.entering = true;
     }
   }
 }
@@ -66,25 +72,6 @@ export default {
   top: 213px;
   left: 219px;
 }
-.play-btn {
-  position: relative;
-  padding: 30px;
-  border: none;
-  border-radius: 50%;
-  background-color: #EAD7D7;
-  outline: none;
-}
-
-.play-btn:hover {cursor: pointer;}
-
-.play-icon {
-  position: absolute;
-  top: 18px;
-  left: 21px;
-  
-  font-size: 25px;
-  color: #fff;
-}
 
 .album-card-info {
   white-space: nowrap;
@@ -102,4 +89,11 @@ export default {
   text-overflow: ellipsis;
 }
 .album-card-info span {color: #acb4ab;}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
 </style>
