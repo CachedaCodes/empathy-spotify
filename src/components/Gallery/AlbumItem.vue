@@ -53,6 +53,9 @@ export default {
     margin: 15px;
     border: 1px solid #ccc;
     border-radius: 8px;
+
+    background-color: var(--clear-color);
+
     box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
 
     perspective: 1000px; 
@@ -67,7 +70,7 @@ export default {
     background-size: 210% auto;
     background-repeat: no-repeat;
 
-    border-bottom: 2px solid #EAD7D7;
+    border-bottom: 2px solid var(--main-color);
 
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
@@ -103,7 +106,7 @@ export default {
   .album-card-info ul {
     list-style-type: none;
 
-    border-left: 4px solid #EAD7D7;
+    border-left: 4px solid var(--main-color);
 
     padding-left: 9px;
     margin-left: 10px;

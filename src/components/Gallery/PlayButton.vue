@@ -28,7 +28,7 @@ export default {
   padding: 30px;
   border: none;
   border-radius: 50%;
-  background-color: #EAD7D7;
+  background-color: var(--main-color);
   outline: none;
 
   transition-property: box-shadow;

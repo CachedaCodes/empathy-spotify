@@ -41,7 +41,7 @@ export default {
   .no-results-title {
     width: 100%;
 
-    font: bold 50px arial;
+    font: bold 50px 'Domine', Georgia, serif;
     font-weight: 100;
     color: transparent;
     text-align: center;
