@@ -7,6 +7,7 @@
           v-model="searchQuery"
           @keyup.enter="search"
         >
+      <font-awesome-icon icon="search" class="search-icon" :class="{searching: isSearching}"/>
     </div>
   </section>
 </template>
@@ -21,6 +22,7 @@ export default {
       searchQuery: ''
     }
   },
+  props: ['isSearching'],
    watch: {
     searchQuery: function (newQuery, oldQuery) {
         this.debouncedSearch();
@@ -80,7 +82,7 @@ export default {
 
   .container input {
     margin: 0;
-    padding: 16px 16px 16px 60px;
+    padding: 16px 50px 16px 25px;
     
     width: 100%;
     border: none;
@@ -96,7 +98,38 @@ export default {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  .search-icon {
+    position: absolute;
+    top: 14px;
+    right: 20px;
     
+    font-size: 35px;
+    color: #000;
+
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .searching {
+    animation: searching 0.5s linear infinite;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  
+  .flip-enter-active, .flip-leave-active {
+    opacity: 1;
+  }
+  .flip-enter, .flip-leave-to {
+    opacity: 0;
+  }
+
+  @keyframes searching {
+    0% {
+      transform: rotate(0deg) translateX(5px) rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg) translateX(5px) rotate(-360deg);
+    }
   }
 
 </style>

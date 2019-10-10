@@ -4,7 +4,7 @@
         <header>
           <h1>Spotify Search</h1>
         </header>
-        <Searchbar/>
+        <Searchbar :isSearching="isSearching" />
       </section>
       <Gallery :albums="albums"/>
     </div>
@@ -13,7 +13,8 @@
   <script>
   import Searchbar from './components/Search/TheSearchbar.vue';
   import Gallery from './components/Gallery/TheGallery.vue';
-  import { mapGetters } from 'vuex'
+  import { mapGetters } from 'vuex';
+
   export default {
     name: 'app',
     components: {
@@ -23,6 +24,7 @@
     computed: {
       ...mapGetters({
         albums: 'GET_ALBUMS',
+        isSearching: 'IS_SEARCHING'
       }),
     }
   }
