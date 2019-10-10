@@ -1,11 +1,14 @@
 <template>
     <section class="gallery">
-      <div
-        is="album-item"
-        v-for="album in albums"
-        :key="album.id"
-        :album="album"
-      ></div>
+      
+      <transition-group tag="div" name="flip">
+        <div
+          is="album-item"
+          v-for="album in albums"
+          :key="album.id"
+          :album="album"
+        ></div>
+        </transition-group>
     </section>
 </template>
 
@@ -22,9 +25,21 @@ export default {
 </script>
 
 <style scoped>
-  .gallery {
+  .gallery > div { /* Transition Group Style */
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
+  }
+
+  .flip-enter-active {
+    transition: all .32s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    transition-delay: .32s;  
+  }
+  .flip-leave-active {
+    transition: all .37s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+  }
+  .flip-enter, .flip-leave-to {
+    transform: scaleX(0) translateZ(0);
+    opacity: 0;
   }
 </style>

@@ -36,9 +36,10 @@ export default {
 }
 
 .play-btn:hover {
+  cursor: pointer;
+
   box-shadow: 0 0 10px #000;
 }
-.play-btn:hover {cursor: pointer;}
 
 .play-icon, .spotify-icon {
   position: absolute;
@@ -50,7 +51,6 @@ export default {
 
   transition: opacity 0.3s, transform 0.3s;
 }
-
 .spotify-icon {
   left: 18px;
 
@@ -59,12 +59,10 @@ export default {
   transition: opacity 0.3s, transform 0.3s;
   transform: rotate(-180deg) scale(0.5);
 }
-
 .play-btn:hover .spotify-icon {
   transform: rotate(0deg) scale(1);
   opacity: 1;
 }
-
 .play-btn:hover .play-icon {
   transform: rotate(180deg) scale(0.5);
   opacity: 0;
