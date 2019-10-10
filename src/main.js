@@ -4,11 +4,11 @@ import store from "./store";
 
 // Font Awesome
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faPlay, faMicrophone, faCompactDisc, faCalendarDay } from "@fortawesome/free-solid-svg-icons";
+import { faPlay, faMicrophone, faCompactDisc, faCalendarDay, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faSpotify } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-library.add(faPlay, faMicrophone, faCalendarDay, faCompactDisc, faSpotify);
+library.add(faPlay, faMicrophone, faCalendarDay, faCompactDisc, faSpotify, faSearch);
 console.log(faSpotify);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

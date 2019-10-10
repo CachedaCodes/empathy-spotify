@@ -1,12 +1,16 @@
 import api from '@/api';
 
 const state = {
-  albums: []
+  albums: [],
+  searching: false
 };
 
 const getters = {
   GET_ALBUMS: (state) => {
     return state.albums
+  },
+  IS_SEARCHING: (state) => {
+    return state.searching
   }
 };
 
@@ -16,20 +20,27 @@ const mutations = {
   },
   CLEAR_ALBUMS: (state) => {
     state.albums = [];
+  },
+  TRIGGER_SEARCHING: (state) => {
+    state.searching = !state.searching
   }
 };
 
 const actions = {
   SEARCH_ALBUMS: async ({ commit, dispatch }, query) => {
     try {
-      const { data } = await api.spotify.search.search(query)
+      commit('TRIGGER_SEARCHING');
+      const { data } = await api.spotify.search.search(query);
       if (!data) {
-        commit('CLEAR_ALBUMS')
+        commit('CLEAR_ALBUMS');
       } else {
         commit('SET_ALBUMS', data.albums.items);
       }
+
+      commit('TRIGGER_SEARCHING')
     } catch (err) {
-      commit('CLEAR_ALBUMS')
+      commit('CLEAR_ALBUMS');
+      commit('TRIGGER_SEARCHING');
       console.log(err.message);
     }
   }
