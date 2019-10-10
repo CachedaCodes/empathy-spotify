@@ -1,5 +1,6 @@
   <template> 
     <div id="app">
+      <AuthModal v-if="!accessToken && showModal" @close="showModal = false"/>
       <section class="head-panel">
         <header>
           <h1>Spotify Search</h1>
@@ -13,15 +14,22 @@
   <script>
   import Searchbar from './components/Search/TheSearchbar.vue';
   import Gallery from './components/Gallery/TheGallery.vue';
+  import AuthModal from './components/Modal/TheAuthModal.vue';
 
   import queryString from 'query-string';
   import { mapGetters } from 'vuex';
 
   export default {
     name: 'app',
+    data: () => {
+      return {
+        showModal: true
+      }
+    },
     components: {
       Searchbar,
-      Gallery
+      Gallery,
+      AuthModal
     },
     computed: {
       ...mapGetters({
@@ -34,9 +42,7 @@
       const parsed = queryString.parse(window.location.search)
 
       if(parsed.access_token)
-        this.$store.dispatch('SET_ACCESS_TOKEN', parsed.access_token);
-      else
-        this.$store.dispatch('SPOTIFY_LOGIN');
+        this.$store.commit('SET_ACCESS_TOKEN', parsed.access_token);
     }
   }
   </script>
