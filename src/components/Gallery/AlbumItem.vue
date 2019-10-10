@@ -14,9 +14,11 @@
         </div>
         <div class="album-card-info">
           <h1>{{ album.name }}</h1>
-          <p>Artist: {{ album.artists[0].name }}</p>
-          <p>Realease date: {{ album.release_date }}</p>
-          <p>Total tracks: {{ album.total_tracks }}</p>
+          <ul>
+            <li><font-awesome-icon icon="microphone"/> Artist: {{ album.artists[0].name }}</li>
+            <li><font-awesome-icon icon="calendar-day" /> Realease date: {{ readableReleaseDate }}</li>
+            <li><font-awesome-icon icon="compact-disc"/> Total tracks: {{ album.total_tracks }}</li>
+          </ul>
         </div>
       </div>
       <div class="flip-card-back"/>
@@ -31,12 +33,12 @@ export default {
   components: {
     PlayButton
   },
-  data: function() {
-    return {
-      mounted: false
+  props: ['album'],
+  computed: {
+    readableReleaseDate: function() {
+      return new Date(this.album.release_date).toLocaleString('default', {month: 'short', day:'numeric', year:'numeric'})
     }
-  },
-  props: ['album']
+  }
 }
 </script>
 
@@ -65,7 +67,7 @@ export default {
     background-size: 210% auto;
     background-repeat: no-repeat;
 
-    margin-bottom: 1px solid #EAD7D7;
+    border-bottom: 2px solid #EAD7D7;
 
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
@@ -77,7 +79,7 @@ export default {
     border-top-left-radius: 7px; 
     border-top-right-radius: 7px;
   }
-  
+
   .play-wrapper {
     position: absolute;
     top: 213px;
@@ -91,13 +93,26 @@ export default {
   }
   .album-card-info h1 {
     font-size: 1.2em;
-    font-weight: 600;
     
     color: black;
     
     margin-bottom: 10px;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  .album-card-info ul {
+    list-style-type: none;
+
+    border-left: 4px solid #EAD7D7;
+
+    padding-left: 9px;
+    margin-left: 10px;
+  }
+  .album-card-info li {
+    margin-bottom: 5px;
+  }
+  .album-card-info svg {
+    width: 15px;
   }
 
 </style>

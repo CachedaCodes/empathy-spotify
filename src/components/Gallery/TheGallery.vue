@@ -8,7 +8,8 @@
           :key="album.id"
           :album="album"
         ></div>
-        </transition-group>
+      </transition-group>
+      <h1 class="no-results-title" v-if="albumsIsEmpty">There are no results</h1>
     </section>
 </template>
 
@@ -20,7 +21,12 @@ export default {
   components: {
     AlbumItem
   },
-  props: ['albums']
+  props: ['albums'],
+  computed: {
+    albumsIsEmpty: function() {
+      return !this.albums.length;
+    }
+  }
 }
 </script>
 
@@ -28,7 +34,25 @@ export default {
   .gallery > div { /* Transition Group Style */
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     align-items: stretch;
+  }
+
+  .no-results-title {
+    width: 100%;
+
+    font: bold 50px arial;
+    font-weight: 100;
+    color: transparent;
+    text-align: center;
+
+    background-color: grey;
+    
+    text-shadow: 2px 2px 3px rgba(255,255,255,0.7);
+
+    -webkit-background-clip: text;
+      -moz-background-clip: text;
+            background-clip: text;
   }
 
   .flip-enter-active {
