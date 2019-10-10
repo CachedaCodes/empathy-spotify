@@ -1,5 +1,7 @@
+import auth from './auth'
 import spotify from './spotify'
 
 export default {
-    spotify
-  };
+  auth,
+  spotify
+};
