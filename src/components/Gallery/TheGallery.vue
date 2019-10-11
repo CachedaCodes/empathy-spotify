@@ -11,7 +11,9 @@
           :album="album"
         ></div>
       </transition-group>
-      <h1 class="no-results-title" v-if="albumsIsEmpty">There are no results</h1>
+      <transition name="fade">
+        <h1 class="no-results-title" v-if="albumsIsEmpty">There are no results</h1>
+      </transition>
     </section>
 </template>
 
@@ -80,12 +82,15 @@ export default {
     transform: scaleX(0) translateZ(0);
     opacity: 0;
   }
-
   
-    .fade-enter-active, .fade-leave-active {
-        transition: opacity .5s;
-    }
-    .fade-enter, .fade-leave-to  {
-        opacity: 0;
-    }
+  .fade-enter-active, .fade-leave-active {
+      transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to {
+      opacity: 0;
+  }
+
+  .fade-enter-active.no-results-title {
+    transition-delay: .50s; 
+  }
 </style>
