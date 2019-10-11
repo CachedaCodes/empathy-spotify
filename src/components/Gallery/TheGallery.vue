@@ -1,6 +1,8 @@
 <template>
     <section class="gallery" aria-live="polite">
-      
+      <transition name="fade">
+        <ResultCounter :resultCount="resultCount" v-if="!albumsIsEmpty"/>
+      </transition>
       <transition-group tag="div" name="flip">
         <div
           is="album-item"
@@ -15,27 +17,39 @@
 
 <script>
 import AlbumItem from './AlbumItem.vue';
+import ResultCounter from './TheResultCounter.vue';
 
 export default {
   name: 'gallery',
   components: {
-    AlbumItem
+    AlbumItem,
+    ResultCounter
   },
   props: ['albums'],
   computed: {
     albumsIsEmpty: function() {
       return !this.albums.length;
+    },
+    resultCount: function() {
+      return this.albums.length;
     }
   }
 }
 </script>
 
 <style scoped>
-  .gallery > div { /* Transition Group Style */
+  .gallery, .gallery > div { /* Transition Group Style */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: stretch;
+  }
+  .gallery {
+    flex-direction: column;
+  }
+
+  .result-counter {
+    text-align: center;
   }
 
   .no-results-title {
@@ -66,4 +80,12 @@ export default {
     transform: scaleX(0) translateZ(0);
     opacity: 0;
   }
+
+  
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+    }
+    .fade-enter, .fade-leave-to  {
+        opacity: 0;
+    }
 </style>
