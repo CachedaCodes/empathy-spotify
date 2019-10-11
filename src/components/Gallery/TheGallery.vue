@@ -1,5 +1,5 @@
 <template>
-    <section class="gallery">
+    <section class="gallery" aria-live="polite">
       
       <transition-group tag="div" name="flip">
         <div

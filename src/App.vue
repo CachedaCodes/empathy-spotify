@@ -1,13 +1,13 @@
   <template> 
     <div id="app">
-      <AuthModal v-if="!accessToken && showModal" @close="showModal = false"/>
       <section class="head-panel">
-        <header>
+        <header role="banner">
           <h1>Spotify Search</h1>
         </header>
-        <Searchbar :isSearching="isSearching" />
+        <Searchbar :isSearching="isSearching" :allowFocus="!(!accessToken && showModal)"/>
       </section>
       <Gallery :albums="albums"/>
+    <AuthModal v-if="!accessToken && showModal" @close="showModal = false" :aria-hidden="!(!accessToken && showModal)"/>
     </div>
   </template>
 
@@ -36,7 +36,7 @@
         albums: 'GET_ALBUMS',
         isSearching: 'IS_SEARCHING',
         accessToken: 'GET_ACCESS_TOKEN'
-      }),
+      })
     },
     mounted: function() {
       const parsed = queryString.parse(window.location.search)

@@ -11,7 +11,11 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 library.add(faPlay, faMicrophone, faCalendarDay, faCompactDisc, faSpotify, faSearch);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
-Vue.config.productionTip = false;
+Vue.directive('focus', {
+  inserted: function (el) {
+    el.focus()
+  }
+})
 
 new Vue({
   store,

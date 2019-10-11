@@ -13,7 +13,7 @@
                     </div>
                     
                     <div class="button-wrapper">
-                        <button class="redirect-button" @click="redirectToSpotify">
+                        <button v-focus class="redirect-button" @click="redirectToSpotify">
                         Yes
                         </button>
 
@@ -119,6 +119,15 @@ export default {
         color: var(--main-color);
 
         box-shadow: 0 0 0 2px var(--main-color) inset;
+
+        background-color: transparent;
+    }
+    .button-wrapper button:focus {
+        color: var(--main-color);
+
+        outline: 0;
+
+        box-shadow: 0px 0px 6px 2px var(--scent-color);
 
         background-color: transparent;
     }
