@@ -1,7 +1,7 @@
-import api from '@/api';
+import api from "@/api";
 
 const state = {
-  accessToken: ''
+  accessToken: ""
 };
 
 const getters = {
@@ -15,15 +15,12 @@ const mutations = {
 };
 
 const actions = {
-  SPOTIFY_LOGIN: async () => {
+  SPOTIFY_LOGIN: () => {
     try {
-      const { data } = await api.auth.getUserAuthURL();
-      if (!data) {
-      } else {
-        window.location.href = "https://spotify-oauth-backend.herokuapp.com/login";
-      }
+      console.log(api)
+      window.location.href = api.auth.spotifyLoginURL;
     } catch (err) {
-      console.log(err.message);
+      console.error(err.message);
     }
   }
 };
@@ -36,4 +33,3 @@ const module = {
 };
 
 export default module;
-
