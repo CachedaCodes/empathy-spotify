@@ -72,6 +72,10 @@
       font-family: 'Domine', Georgia, serif;
     }
 
+    h1 {
+      text-shadow: 3px 2px var(--scent-color);
+    }
+
     .search-bar {
       display: flex;
       align-items: center;
