@@ -73,7 +73,7 @@
       font-family: 'Domine', Georgia, serif;
     }
 
-    h1 {
+    .banner h1 {
       text-shadow: 3px 2px var(--scent-color);
     }
 
