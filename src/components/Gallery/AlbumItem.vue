@@ -1,27 +1,25 @@
 <template>
     <article 
+      tabindex="0"
       class="album-card"
       :key="album.id"
     >
-      <div class="flip-card-front">
-        <div class="card-cover">
-          <img :src="album.images[1].url">
-          <div class="play-wrapper">
-            <PlayButton 
-              :spotifyLink="album.external_urls.spotify"
-            />
-          </div>
-        </div>
-        <div class="album-card-info">
-          <h1>{{ album.name }}</h1>
-          <ul>
-            <li><font-awesome-icon icon="microphone"/> Artist: {{ album.artists[0].name }}</li>
-            <li><font-awesome-icon icon="calendar-day" /> Realease date: {{ readableReleaseDate }}</li>
-            <li><font-awesome-icon icon="compact-disc"/> Total tracks: {{ album.total_tracks }}</li>
-          </ul>
+      <div class="card-cover">
+        <img :src="album.images[1].url" :alt="albumImgAlt">
+        <div class="play-wrapper">
+          <PlayButton 
+            :spotifyLink="album.external_urls.spotify"
+          />
         </div>
       </div>
-      <div class="flip-card-back"/>
+      <div class="album-card-info">
+        <h1>{{ album.name }}</h1>
+        <ul>
+          <li><font-awesome-icon icon="microphone"/> Artist: {{ album.artists[0].name }}</li>
+          <li><font-awesome-icon icon="calendar-day" /> Realease date: {{ readableReleaseDate }}</li>
+          <li><font-awesome-icon icon="compact-disc"/> Total tracks: {{ album.total_tracks }}</li>
+        </ul>
+      </div>
     </article>
 </template>
 
@@ -37,6 +35,9 @@ export default {
   computed: {
     readableReleaseDate: function() {
       return new Date(this.album.release_date).toLocaleString('default', {month: 'short', day:'numeric', year:'numeric'})
+    },
+    albumImgAlt: function() {
+      return `Album image for ${this.album.name}`;
     }
   }
 }
@@ -60,6 +61,12 @@ export default {
 
     perspective: 1000px; 
   } 
+
+  .album-card:focus {
+    outline: 0;
+
+    box-shadow: 0px 0px 6px 2px var(--scent-color);
+  }
 
   .card-cover {
     position: relative;

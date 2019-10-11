@@ -40,6 +40,9 @@ export default {
 
   box-shadow: 0 0 10px #000;
 }
+.play-btn:focus {
+    box-shadow: 0px 0px 10px 5px var(--scent-color);
+}
 
 .play-icon, .spotify-icon {
   position: absolute;
@@ -59,11 +62,11 @@ export default {
   transition: opacity 0.3s, transform 0.3s;
   transform: rotate(-180deg) scale(0.5);
 }
-.play-btn:hover .spotify-icon {
+.play-btn:hover .spotify-icon, .play-btn:focus .spotify-icon {
   transform: rotate(0deg) scale(1);
   opacity: 1;
 }
-.play-btn:hover .play-icon {
+.play-btn:hover .play-icon, .play-btn:focus .play-icon {
   transform: rotate(180deg) scale(0.5);
   opacity: 0;
 }

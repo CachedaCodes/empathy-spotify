@@ -2,7 +2,8 @@
   <section class="search-bar">
     <div class="container">
       <input
-          autofocus autocomplete="off"
+          :tabindex="allowFocus ? '' : -1"
+          autocomplete="off"
           placeholder="Search for an Album"
           v-model="searchQuery"
           @keyup.enter="search"
@@ -22,7 +23,7 @@ export default {
       searchQuery: ''
     }
   },
-  props: ['isSearching'],
+  props: ['isSearching', 'allowFocus'],
    watch: {
     searchQuery: function (newQuery, oldQuery) {
         this.debouncedSearch();
@@ -44,8 +45,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  :focus {
+  .container input:focus {
     outline: 0;
+    box-shadow: 0px 0px 6px 2px var(--scent-color);
   }
 
   .container {
