@@ -1,5 +1,6 @@
   <template> 
     <div id="app">
+      <AuthModal v-if="!accessToken && showModal" @close="showModal = false"/>
       <section class="head-panel">
         <header>
           <h1>Spotify Search</h1>
@@ -13,19 +14,35 @@
   <script>
   import Searchbar from './components/Search/TheSearchbar.vue';
   import Gallery from './components/Gallery/TheGallery.vue';
+  import AuthModal from './components/Modal/TheAuthModal.vue';
+
+  import queryString from 'query-string';
   import { mapGetters } from 'vuex';
 
   export default {
     name: 'app',
+    data: () => {
+      return {
+        showModal: true
+      }
+    },
     components: {
       Searchbar,
-      Gallery
+      Gallery,
+      AuthModal
     },
     computed: {
       ...mapGetters({
         albums: 'GET_ALBUMS',
-        isSearching: 'IS_SEARCHING'
+        isSearching: 'IS_SEARCHING',
+        accessToken: 'GET_ACCESS_TOKEN'
       }),
+    },
+    mounted: function() {
+      const parsed = queryString.parse(window.location.search)
+
+      if(parsed.access_token)
+        this.$store.commit('SET_ACCESS_TOKEN', parsed.access_token);
     }
   }
   </script>

@@ -9,7 +9,6 @@ import { faSpotify } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 library.add(faPlay, faMicrophone, faCalendarDay, faCompactDisc, faSpotify, faSearch);
-console.log(faSpotify);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.config.productionTip = false;
