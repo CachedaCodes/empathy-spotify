@@ -78,6 +78,8 @@
       justify-content: center;
     }
     .head-panel {
+      height: 187px;
+
       background-image: url('./assets/pattern-bg.png');
     
       margin-bottom: 100px;  
@@ -98,4 +100,23 @@
       -moz-text-rendering: optimizeLegibility;
       text-rendering: optimizeLegibility;
     }
+
+    @media screen and (max-width: 700px) {
+      .head-panel h1 {
+        position: absolute;
+        top: 25px;
+
+        font-size: 50px;
+      }
+    }
+
+    @media screen and (max-width: 350px) {
+      .head-panel h1 {
+        position: absolute;
+        top: 50px;
+        
+        font-size: 30px;
+      }
+    }
+
   </style>
