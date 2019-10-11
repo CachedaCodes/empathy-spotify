@@ -26,12 +26,11 @@ request.interceptors.response.use(null, error => {
 
   if (store.getters["GET_ACCESS_TOKEN"] && status === 401) {
     // TODO: Refresh Token
-
     store.dispatch("SPOTIFY_LOGIN");
   } else if (status === 404) {
     throw error.response;
   } else {
-    store.dispatch("SPOTIFY_LOGIN");
+    throw error.response;
   }
 });
 

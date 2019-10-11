@@ -6,8 +6,8 @@
         </header>
         <Searchbar :isSearching="isSearching" :allowFocus="!(!accessToken && showModal)"/>
       </section>
-      <Gallery :albums="albums"/>
-    <AuthModal v-if="!accessToken && showModal" @close="showModal = false" :aria-hidden="!(!accessToken && showModal)"/>
+      <Gallery :albums="albums" :isSearchError="isSearchError"/>
+      <AuthModal v-if="!accessToken && showModal" @close="showModal = false" :aria-hidden="!(!accessToken && showModal)"/>
     </div>
   </template>
 
@@ -35,7 +35,8 @@
       ...mapGetters({
         albums: 'GET_ALBUMS',
         isSearching: 'IS_SEARCHING',
-        accessToken: 'GET_ACCESS_TOKEN'
+        accessToken: 'GET_ACCESS_TOKEN',
+        isSearchError: 'IS_SEARCH_ERROR'
       })
     },
     mounted: function() {
