@@ -12,7 +12,10 @@
         ></div>
       </transition-group>
       <transition name="fade">
-        <h1 class="no-results-title" v-if="albumsIsEmpty">There are no results</h1>
+        <h1 class="no-results-title" v-if="albumsIsEmpty && !isSearchError">There are no results</h1>
+      </transition>
+      <transition name="fade">
+        <h1 class="error-title" v-if="isSearchError">An error has ocurred</h1>
       </transition>
     </section>
 </template>
@@ -27,7 +30,7 @@ export default {
     AlbumItem,
     ResultCounter
   },
-  props: ['albums'],
+  props: ['albums', 'isSearchError'],
   computed: {
     albumsIsEmpty: function() {
       return !this.albums.length;
@@ -54,7 +57,7 @@ export default {
     text-align: center;
   }
 
-  .no-results-title {
+  .no-results-title, .error-title {
     width: 100%;
 
     font: bold 50px 'Domine', Georgia, serif;
@@ -69,6 +72,10 @@ export default {
     -webkit-background-clip: text;
       -moz-background-clip: text;
             background-clip: text;
+  }
+
+  .error-title {
+    background-color: red;
   }
 
   .flip-enter-active {
